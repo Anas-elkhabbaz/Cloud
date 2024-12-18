@@ -64,5 +64,5 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}  # Ensure the correct Azure Web App name here
+          app-name: ${{ env.ProjetOCR }}  # Ensure the correct Azure Web App name here
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}  # Correct publish profile from secrets
