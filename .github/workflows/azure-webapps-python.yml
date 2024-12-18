@@ -1,8 +1,8 @@
 name: Build and deploy Python app to Azure Web App
 
 env:
-  AZURE_WEBAPP_NAME: ProjectOCR  # set this to the name of your Azure Web App
-  PYTHON_VERSION: '3.8'           # set this to the Python version to use
+  AZURE_WEBAPP_NAME: ProjectOCR  # Ensure this matches your Azure Web App's name
+  PYTHON_VERSION: '3.8'          # Set this to the Python version to use
 
 on:
   push:
@@ -31,7 +31,7 @@ jobs:
           source venv/bin/activate
 
       - name: Install dependencies
-        run: pip install -r requirement.txt
+        run: pip install -r requirements.txt  # Ensure the correct requirements file is used
 
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
@@ -59,10 +59,10 @@ jobs:
           name: python-app
           path: .
 
-      # Deploy directly using the publish profile (no need for Azure login action)
+      # Deploy directly using the publish profile
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: ${{ env.AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}  # Ensure the correct Azure Web App name here
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}  # Correct publish profile from secrets
